@@ -1,0 +1,39 @@
+pkill node
+set -e
+
+export ENVIRONMENT=development
+export PORT=3000
+
+if [ $# -gt 0  ]; then
+	echo "=========================================="
+	echo "Syncing with GitHub"
+	echo "=========================================="
+
+	git pull origin master
+else
+  echo "Skipping Git Pull from GitHub"
+fi
+
+./run_tests_unit
+
+./run_tests_jshint
+
+./run_tests_integration
+
+echo "=========================================="
+echo "All tests passed!"
+echo "=========================================="
+
+if [ $# -gt 0  ]; then
+	
+	MESSAGE="$@"
+	echo "=========================================="
+	echo "Committing with message '$MESSAGE'"
+	echo "=========================================="
+	git add -A
+	git commit -am "$MESSAGE"
+	echo "Git Committed"
+	git push
+else
+  echo "No commit message, no commit"
+fi

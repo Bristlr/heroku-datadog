@@ -1,0 +1,28 @@
+{
+  "name": "heroku-datadog",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bristlr/heroku-datadog"
+  },
+  "dependencies": {
+    "express": "4.x",
+    "node-dogstatsd": "0.0.x",
+    "basic-auth": "1.x"
+  },
+  "devDependencies": {
+    "zombie": "*",
+    "mocha": "*",
+    "chai": "*",
+    "jshint": "*",
+    "request": "*",
+    "get": "*"
+  },
+  "engines": {
+    "node": "0.12.x",
+    "npm": "1.2.x"
+  },
+  "jshintConfig": {
+    "sub": true
+  }
+}

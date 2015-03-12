@@ -1,0 +1,5 @@
+echo "=========================================="
+echo "Running JSHint"
+echo "=========================================="
+
+jshint ./lib ./tests/integration ./tests/unit

@@ -1,0 +1,25 @@
+echo "=========================================="
+echo "Integration Tests"
+echo "=========================================="
+
+set -e
+
+foreman start &
+sleep 1
+
+processTestFile(){
+	
+	if [ -f $1 ]
+	then
+		echo "Running test: $1"
+		mocha $1 --recursive --ui tdd --reporter spec --timeout 30000
+	fi
+}
+
+export -f processTestFile
+
+find ./tests/integration/* | while read file; do processTestFile "$file"; done
+
+pkill node
+
+echo "Integration tests complete"
